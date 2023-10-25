@@ -176,6 +176,8 @@ public class VectorExercises : MonoBehaviour
         HVector2D b = new HVector2D(6, 0);
         HVector2D c = new HVector2D(2, 2);
 
+        int x = 0;
+
         //HVector2D v1 = b - a;
         // Your code here
 
