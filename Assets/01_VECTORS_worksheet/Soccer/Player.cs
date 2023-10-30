@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     public bool IsCaptain = true;
     public Player OtherPlayer;
 
+    
+
+
     //float Magnitude(Vector3 vector)
     //{
     //    // Your code here
@@ -70,6 +73,7 @@ public class Player : MonoBehaviour
     {
         if (IsCaptain)
         {
+
             //float angle = // Your code here
             //Debug.Log(angle);
         }

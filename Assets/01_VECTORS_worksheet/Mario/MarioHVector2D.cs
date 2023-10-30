@@ -14,15 +14,15 @@ public class MarioHVector2D : MonoBehaviour
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
         gravityDir = new HVector2D(planet.position - transform.position);  
         moveDir = new HVector2D(gravityDir.y, -gravityDir.x);
+        moveDir.Normalize();
 
-        // Your code here
-        // ...
+        
     }
 }

@@ -178,13 +178,12 @@ public class VectorExercises : MonoBehaviour
 
         
 
-        //HVector2D v1 = b - a;
-        // Your code here
+       HVector2D v1 = b - a;
 
-        //HVector2D proj = // Your code here
+       HVector2D proj = c.Projection(v1);
 
-       //DebugExtension.DebugArrow(a.ToUnityVector3(), b.ToUnityVector3(), Color.red, 60f);
-       //DebugExtension.DebugArrow(a.ToUnityVector3(), c.ToUnityVector3(), Color.yellow, 60f);
-       //DebugExtension.DebugArrow(a.ToUnityVector3(), proj.ToUnityVector3(), Color.white, 60f);
+       DebugExtension.DebugArrow(a.ToUnityVector3(), b.ToUnityVector3(), Color.red, 60f);
+       DebugExtension.DebugArrow(a.ToUnityVector3(), c.ToUnityVector3(), Color.yellow, 60f);
+       DebugExtension.DebugArrow(a.ToUnityVector3(), proj.ToUnityVector3(), Color.white, 60f);
     }
 }

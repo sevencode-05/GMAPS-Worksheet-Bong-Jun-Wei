@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Mario : MonoBehaviour
 {
+    //getting the position of the planet object
     public Transform planet;
+    //setting the force of the
     public float force = 5f;
     public float gravityStrength = 5f;
 
