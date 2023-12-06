@@ -99,34 +99,61 @@ public class HMatrix2D
 
     // Note that the second argument is a HVector2D object
     //
-    //public static HVector2D operator *(HMatrix2D left, HVector2D right)
-    //{
-        //return // your code here
-    //}
+    public static HVector2D operator *(HMatrix2D left, HVector2D right)
+    {
+        // Create a new HVector2D to store the result
+        HVector2D result = new HVector2D();
+
+        // Perform matrix-vector multiplication
+        result.x = left.entries[0, 0] * right.x + left.entries[0, 1] * right.y + left.entries[0, 2] * right.h;
+        result.y = left.entries[1, 0] * right.x + left.entries[1, 1] * right.y + left.entries[1, 2] * right.h;
+        result.h = left.entries[2, 0] * right.x + left.entries[2, 1] * right.y + left.entries[2, 2] * right.h;
+
+        return result;
+    }
 
     // Note that the second argument is a HMatrix2D object
     //
-    //public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
-    //{
-        //return new HMatrix2D
-        //(
-            /* 
-                00 01 02    00 xx xx
-                xx xx xx    10 xx xx
-                xx xx xx    20 xx xx
-                */
-            //left.Entries[0, 0] * right.Entries[0, 0] + left.Entries[0, 1] * right.Entries[1, 0] + left.Entries[0, 2] * right.Entries[2, 0],
+    public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
+    {
+        return new HMatrix2D
+        (
+        /* 
+            00 01 02    00 xx xx
+            xx xx xx    10 xx xx
+            xx xx xx    20 xx xx
+            */
+        //left.Entries[0, 0] * right.Entries[0, 0] + left.Entries[0, 1] * right.Entries[1, 0] + left.Entries[0, 2] * right.Entries[2, 0],
 
-            /* 
-                00 01 02    xx 01 xx
-                xx xx xx    xx 11 xx
-                xx xx xx    xx 21 xx
-                */
-            //left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
+        /* 
+            00 01 02    xx 01 xx
+            xx xx xx    xx 11 xx
+            xx xx xx    xx 21 xx
+            */
+        //left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
 
         // and so on for another 7 entries
-    //);
-    //}
+
+
+        // Row 0
+        left.entries[0, 0] * right.entries[0, 0] + left.entries[0, 1] * right.entries[1, 0] + left.entries[0, 2] * right.entries[2, 0],
+        left.entries[0, 0] * right.entries[0, 1] + left.entries[0, 1] * right.entries[1, 1] + left.entries[0, 2] * right.entries[2, 1],
+        left.entries[0, 0] * right.entries[0, 2] + left.entries[0, 1] * right.entries[1, 2] + left.entries[0, 2] * right.entries[2, 2],
+
+        // Row 1
+        left.entries[1, 0] * right.entries[0, 0] + left.entries[1, 1] * right.entries[1, 0] + left.entries[1, 2] * right.entries[2, 0],
+        left.entries[1, 0] * right.entries[0, 1] + left.entries[1, 1] * right.entries[1, 1] + left.entries[1, 2] * right.entries[2, 1],
+        left.entries[1, 0] * right.entries[0, 2] + left.entries[1, 1] * right.entries[1, 2] + left.entries[1, 2] * right.entries[2, 2],
+
+        // Row 2
+        left.entries[2, 0] * right.entries[0, 0] + left.entries[2, 1] * right.entries[1, 0] + left.entries[2, 2] * right.entries[2, 0],
+        left.entries[2, 0] * right.entries[0, 1] + left.entries[2, 1] * right.entries[1, 1] + left.entries[2, 2] * right.entries[2, 1],
+        left.entries[2, 0] * right.entries[0, 2] + left.entries[2, 1] * right.entries[1, 2] + left.entries[2, 2] * right.entries[2, 2]
+
+
+
+        );
+    }
 
     public static bool operator ==(HMatrix2D left, HMatrix2D right)
     {
@@ -211,12 +238,19 @@ public class HMatrix2D
 
     public void setTranslationMat(float transX, float transY)
     {
-        // your code here
+        setIdentity();
+        entries[0, 2] = transX;
+        entries[1, 2] = transY;
     }
 
     public void setRotationMat(float rotDeg)
     {
-        // your code here
+        setIdentity();
+        float rad = rotDeg * Mathf.Deg2Rad;
+        entries[0, 0] = Mathf.Cos(rad);
+        entries[0, 1] = -Mathf.Sin(rad);
+        entries[1, 0] = Mathf.Sin(rad);
+        entries[1, 1] = Mathf.Cos(rad);
     }
 
     public void setScalingMat(float scaleX, float scaleY)
