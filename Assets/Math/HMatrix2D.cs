@@ -119,10 +119,14 @@ public class HMatrix2D
     //
     public static HVector2D operator *(HMatrix2D left, HVector2D right)
     {
-
+        
+        //instantiate a new HVector2D object named results
         HVector2D result = new HVector2D();
+        //calcuate the x component of the result vector 
         result.x = left.entries[0, 0] * right.x + left.entries[0, 1] * right.y + left.entries[0, 2] * right.h;
+        //calcuate the x component of the result vector 
         result.y = left.entries[1, 0] * right.x + left.entries[1, 1] * right.y + left.entries[1, 2] * right.h;
+        //return the calculated result vector
         return result;
     }
 
