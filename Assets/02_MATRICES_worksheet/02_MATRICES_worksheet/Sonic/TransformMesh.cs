@@ -28,8 +28,8 @@ public class TransformMesh : MonoBehaviour
         pos = new HVector2D(gameObject.transform.position.x, gameObject.transform.position.y);
 
         // Your code here
-        //Translate(1, 1);
-        Rotate(90f);
+        Translate(1, 1);
+        //Rotate(90f);
 
     }
 
@@ -44,7 +44,7 @@ public class TransformMesh : MonoBehaviour
         Transform();
 
         //update the object position by the product of the below
-        pos = toOriginMatrix * rotateMatrix * pos;
+        pos = toOriginMatrix * pos;
         
     }
 
